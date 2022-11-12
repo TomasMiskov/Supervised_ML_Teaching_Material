@@ -1,0 +1,131 @@
+---
+title: "Welcome to R Exercise"
+author: "Tomas Miskov, Valentino Hägg"
+date: "`r Sys.Date()`"
+output: pdf_document
+ulrcolor: CornflowerBlue
+header-includes:
+  - \usepackage{float}
+  - \usepackage{booktabs}
+  - \newcommand{\mat}[1]{\mathbf{#1}}
+  - \newcommand{\vect}[1]{\boldsymbol{#1}}
+---
+```{r setup, include=FALSE}
+# eval is set to FALSE for every chunk so the Markdown doesn't complain as you work through the chunks. Inside every chunk set eval to TRUE for output to show after knitting. Or change the setting in this chunk to eval = TRUE
+# echo is set to FALSE so the actual code is NOT printed in the knitted PDF
+knitr::opts_chunk$set(echo = FALSE,
+                      eval = FALSE)
+```
+
+This is a short exercise file to get you started with R and R Markdown. If you are not familiar with R, try doing the exercises here before implementing the MM algorithm discussed in the lecture. In our tutorial I will first check with all the R-newcomers if they survived these two exercises, after which we will together go through the implementation of the MM algorithm.
+
+For the R-newcomers: The **welcome_to_R_solution.pdf** is the output you are aiming to create. The **welcome_to_R_solution.Rmd** file shows you exactly how it was created using R Markdown. You are now reading the PDF output of the **welcome_to_R_exercise.Rmd** file. As a good practice, we suggest you open a new R Script and start implementing your solutions to the exercises described in this PDF. Once all your code is running, and the values of your output agree with the **welcome_to_R_solution.pdf**, you can open the **welcome_to_R_exercise.Rmd** and populate the code chunks with your code to replicate the **welcome_to_R_solution.pdf**. Try first only using the PDF file of the solutions for checking your answers, if you really can't solve something, have a look into the Rmd solution file.
+
+\section{Data Manipulation}
+
+The following exercises introduce you to the basic commands of R, including the work with vectors, matrices, and some elementary data manipulation. Since importing data is often the first step, let's start with that. Your task in this part is to:
+
+1. Open a fresh R Script file in your chosen folder/location
+2. Get your current working directory and print it in the output. Use `getwd()` and `cat()` commands
+3. Download the air quality dataset from Canvas, put it in a folder of your choosing, and change the working directory to point to that folder using `setwd()`. If it is in the same folder as your script you do not have to change the working directory. After importing the data in the next step, change back the working directory to where the script is located.
+4. Import the air quality data and show the first 5 rows/entries. Use `knitr::kable()` to make a table. Don't forget to include a caption
+5. Get the summary statistics for every variable. Use `kable()` again
+6. Print the indices of rows that have less than 20mm of rain and airq more than 100. Useful commands can be `as.data.frame()`, `which()`, `cat()`, and `paste0()`
+7. Finally plot a scatter plot of `airq` vs. `rain`
+
+
+```{r}
+# Set the chunk's result parameter to 'asis' to print the text nicely
+# Get working directory using getwd() and print it using cat()
+
+# Set working directory of the folder with your Airq dataset
+
+# Load data using load()
+
+```
+
+```{r}
+# Use knitr::kable to print the head of the dataset
+
+
+```
+
+```{r}
+# Use knitr::kable to print the summary statistics
+
+```
+
+```{r}
+# Change the dataset to a data.frame
+Airq <- 
+  
+# Use which() and the '$' operator to select a specific column, e.g. Airq$rain
+rows <- 
+  
+# Print the indices using cat() and paste(rows, collapse = ?)
+
+```
+
+```{r}
+# Use the plot function to plot the Air quality against rain volume
+# Don't forget to set a caption using a code chunk parameter fig.cap
+plot(X, y,
+     col=,
+     main=,
+     xlab=,
+     ylab=,
+     pch=19)
+```
+
+\pagebreak
+\section{Handling Matrices and Vectors}
+
+Hopefully you've struggled a bit with data and now you have the basics of handling a small dataset. Let's now turn to handling vectors and matrices, since that's what R is good at, and what you will do most of the time in this course and beyond. The task is as follows:
+
+1. Set a seed to 123
+2. Generate a random matrix $\mat{X}$ of 100 observations of 10 explanatory variables. Use normal distribution with mean of 5 and sd of 1.5
+3. Generate a random vector of 100 observations of target values $\vect{y}$, use normal distribution with $\mu = 3, \; \sigma = 2$
+4. Normalize the $\mat{X}$ values and plot $\mat{X}$ vs. $\vect{y}$
+5. Implement an analytical solution to the linear regression in matrix form to predict $\vect{y}$ from $\mat{X}$ (as seen in the lecture slides)
+6. Manually calculate $R^2$ (by calculating TSS and RSS)
+7, Compare your vector of coefficients and $R^2$ with the values obtained from the native `lm()` function
+
+```{r, fig.cap="\\label{fig:scatter}Plot of X vs. y"}
+# Set see
+
+
+# Generate data
+
+
+# Z-score data
+
+
+# Plot a scatter plot (I used col='#20B2AA' for a change)
+
+
+# Get results from the lm() function
+model <- 
+summary <- 
+
+# Compute the same values manually, use solve() for matrix inversion
+# Don't forget to preppend a column of 1s for the intercept
+X <- ????        
+b <- 
+rss <- sum()
+tss <- sum()
+r2 <- 
+
+# Assert the difference between your values and values from lm()
+eps <- 1e-6
+beta_assert <- all()
+r2_assert <- all()
+```
+
+```{r, results='asis'}
+# Print the results
+cat("My beta coefficients have the same values as the coefficients from the lm() function: ", beta_assert, "\n\n")
+cat("My $R^2$ is the same as $R^2$ from lm(): ", beta_assert)
+```
+
+
+
