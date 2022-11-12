@@ -1,5 +1,8 @@
 # Teaching Material for Seminars of Supervised Machine Learning
 
+## Week 0: Intro
+- introductory exercises to get familiar with R and its syntax
+
 ## Week 1: Minimization by Majorization
 - implementing the basic iterative loop of minimization by majorization
 - explaining the trick of semi-definite matrices for deriving a majorizing function
